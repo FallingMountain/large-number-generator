@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<h1> Your number is <span id="number"></span> </h1><br><br>
+
+<button onclick="generateNumber()">Generate a new number</button>
+
+</html>
+<script type="text/javascript" src="break_eternity.js"></script>
+<script type="text/javascript" src="format.js"></script>
+<script>
+var number = 0;
+
+function randomNum(min, max) {
+  let range = max - min
+  return Math.floor((Math.random()*range)-min)
+}
+var game = {
+options: {
+notation:"Scientific"
+}
+}
+
+function generateNumber() {
+let mantissa = randomNum(0,100)/10
+let exponent = randomNum(0,1e308)
+let notation = randomNum(0,8)
+number = new Decimal(mantissa.toString()+"e"+exponent.toString());
+switch(notation) {
+case 0:game.options.notation = "Mixed scientific"
+case 1:game.options.notation = "Scientific"
+case 2:game.options.notation = "Engineering"
+case 3:game.options.notation = "Logarithm"
+case 4:game.options.notation = "Standard"
+case 5:game.options.notation = "Letters"
+case 6:game.options.notation = "Emojiis"
+}
+}
+document.getElementById("number") = shortenMoney(number);
+</script>
